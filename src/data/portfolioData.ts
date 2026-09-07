@@ -1,0 +1,156 @@
+export const portfolioData = {
+  personalInfo: {
+    fullName: "BRUBERKY JOSÉ BORCEGUÍS MOTA",
+    shortName: "Bruberky Borceguís",
+    title: "Desarrollador Web & Soporte Técnico",
+    degree: "TSU en Informática",
+    identityCard: "V-30.180.683",
+    location: "Los Jardines del Valle, Caracas, Venezuela",
+    phones: ["(0414) 125-3856"],
+    email: "bruberkyborceguis@gmail.com",
+    birthDate: "06/08/2001",
+    profileSummary:
+      "TSU en Informática con experiencia combinada en desarrollo web (JavaScript y React) y soporte técnico a usuarios, además de la gestión de bases de datos en SQL Server. Capaz de construir interfaces, reportes y dashboards funcionales, así como diagnosticar y resolver incidencias para garantizar la continuidad operativa de los sistemas.",
+  },
+  experience: [
+    {
+      company: "Galilei Smart Solutions",
+      role: "Auxiliar de Tecnología",
+      period: "Octubre 2023 — Actualidad",
+      responsibilities: [
+        "Desarrollo de interfaces web internas con React y JavaScript para sistemas organizacionales.",
+        "Diagnóstico y resolución de incidencias técnicas reportadas por usuarios internos.",
+        "Gestión de bases de datos en SQL Server: consultas avanzadas, respaldos y control de accesos.",
+        "Creación de reportes automatizados, exportación de datos y dashboards de visualización.",
+        "Instalación, revisión y mantenimiento de software en equipos de trabajo.",
+        "Configuración e implementación de herramientas tecnológicas usando Visual Studio Code como entorno principal de desarrollo y depuración.",
+      ],
+      skills: [
+        "React",
+        "JavaScript",
+        "SQL Server",
+        "VS Code",
+        "Soporte Técnico",
+        "Dashboards",
+      ],
+    },
+    {
+      company: "Consolidez",
+      role: "Auxiliar Contable (Aprendiz INCES)",
+      period: "Julio 2021 — Actualidad",
+      responsibilities: [
+        "Registro y organización de datos contables en sistemas digitales.",
+        "Generación de reportes financieros y cuadros comparativos.",
+        "Asistencia técnica al personal en el uso de sistemas contables y ofimáticos.",
+        "Apoyo en la automatización de procesos administrativos con herramientas ofimáticas.",
+      ],
+      reference: "Zulay Sánchez — (0414) 337-61-52",
+      skills: [
+        "Sistemas Contables",
+        "Ofimática Avanzada",
+        "Reportes Financieros",
+        "Asistencia Técnica",
+      ],
+    },
+  ],
+  education: [
+    {
+      institution: "ISUM — Instituto Universitario de Mercadotecnia",
+      degree: "TSU en Informática",
+      status: "Culminado 2025",
+      details: "Mención: Informática — Área: Sistemas",
+    },
+    {
+      institution: "Grupo Forma Prof 1011, C.A.",
+      degree: "Curso de Contabilidad",
+      status: "Octubre 2019",
+      details: "Formación como Aprendiz INCES",
+    },
+  ],
+  skills: {
+    development: [
+      "JavaScript",
+      "React",
+      "HTML5",
+      "CSS3",
+      "Next.js",
+      "Tailwind CSS",
+    ],
+    databaseAndTools: [
+      "SQL Server",
+      "Visual Studio Code",
+      "OpenCode (AI Dev Tool)",
+      "Git / GitHub",
+    ],
+    supportAndAdmin: [
+      "Soporte a Usuarios",
+      "Gestión de Incidencias",
+      "Mantenimiento de Equipos",
+      "Reportes & Visualización",
+      "Ofimática Avanzada",
+    ],
+  },
+  personalTraits: [
+    "Proactivo",
+    "Eficiente",
+    "Responsable",
+    "Comprometido",
+    "Orientado a resultados",
+  ],
+  projects: [
+    {
+      name: "AppRRHH_Asistencia",
+      shortName: "Sistema de Control de Asistencia",
+      description:
+        "Sistema integral de control de asistencia de Recursos Humanos que conecta con dispositivos biométricos ZKAccess, calcula retrasos automáticamente, genera reportes mensuales y exporta documentos en Excel y PDF. Incluye dashboard interactivo con KPIs y gráficas de rendimiento por departamento.",
+      role: "Desarrollador Full Stack",
+      period: "2024 — 2025",
+      architecture: "Clean Architecture (4 capas: Domain → Application → Infrastructure → WebAPI)",
+      features: [
+        "Cálculo automático de retrasos con clasificación (Puntual, Retardo Leve/Moderado/Grave)",
+        "Dashboard interactivo con KPIs, gráficas de barras y donas (Chart.js)",
+        "Exportación de reportes a Excel (.xlsx) y PDF con formatos profesionales",
+        "API RESTful con endpoints para consultas por año, mes, departamento y empleado",
+        "Stored procedures optimizados para consultas de asistencia mensual",
+        "Modo oscuro/claro y diseño glassmorphism responsivo",
+        "Accesibilidad WCAG: navegación por teclado, atributos ARIA, skip links",
+      ],
+      techStack: {
+        backend: ["C#", ".NET Framework 4.7.2", "ASP.NET Web API", "Dapper", "OWIN"],
+        frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Chart.js", "Glassmorphism"],
+        database: ["SQL Server", "Stored Procedures", "ADO.NET"],
+        tools: ["EPPlus (Excel)", "QuestPDF (PDF)", "Newtonsoft.Json", "Visual Studio 2022"],
+      },
+      patterns: [
+        "Repository Pattern + Unit of Work",
+        "Result Monad para manejo de errores",
+        "Value Objects inmutables con propiedades computadas",
+        "DTOs para transferencia de datos entre capas",
+        "Separación de responsabilidades por capas",
+      ],
+      stats: {
+        layers: 4,
+        entities: 3,
+        repositories: 3,
+        apiEndpoints: 6,
+      },
+    },
+  ],
+  references: [
+    {
+      name: "Deivis Martínez",
+      role: "Coordinador de Tecnología",
+      phone: "(0424) 285-77-39",
+    },
+    {
+      name: "Enderson Montaña",
+      role: "Analista de Riesgos y Reclamos",
+      phone: "(0416) 920-89-19",
+    },
+    {
+      name: "Zulay Sánchez",
+      role: "Referencia Laboral — Consolidez",
+      phone: "(0414) 337-61-52",
+    },
+  ],
+};
