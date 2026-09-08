@@ -1,18 +1,32 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  interface Window {
+    html2pdf: any;
+  }
+}
 
 export default function CVPage() {
   const { personalInfo, experience, education, skills, references } = portfolioData;
   const cvRef = useRef<HTMLDivElement>(null);
+  const scriptLoaded = useRef(false);
 
-  const handleDownload = async () => {
-    const html2pdf = (await import("html2pdf.js")).default;
-    const element = cvRef.current;
-    if (!element) return;
-    html2pdf()
+  useEffect(() => {
+    if (scriptLoaded.current) return;
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js";
+    script.onload = () => { scriptLoaded.current = true; };
+    document.head.appendChild(script);
+  }, []);
+
+  const handleDownload = () => {
+    if (!window.html2pdf || !cvRef.current) return;
+    window.html2pdf()
       .set({
         margin: 10,
         filename: "Bruberky_Borceguis_CV.pdf",
@@ -20,7 +34,7 @@ export default function CVPage() {
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
       })
-      .from(element)
+      .from(cvRef.current)
       .save();
   };
 
