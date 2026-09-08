@@ -29,8 +29,7 @@ export default function Experience() {
       <div className="max-w-4xl mx-auto px-6">
         <div className="mb-16 reveal">
           <p className="text-sm font-mono text-violet-400 mb-2">{"// Experiencia"}</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">Mi Trayectoria</h2>
-          <p className="mt-3 text-zinc-500 max-w-lg">Un recorrido por las empresas donde he aplicado y perfeccionado mis habilidades.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">Experiencia</h2>
         </div>
 
         <div className="relative">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
 
 export default function CVPage() {
-  const { personalInfo, experience, education, skills, personalTraits, references } = portfolioData;
+  const { personalInfo, experience, education, skills, references } = portfolioData;
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -139,14 +139,6 @@ export default function CVPage() {
               <p className="text-gray-600">{skills.supportAndAdmin.join(", ")}</p>
             </div>
           </div>
-        </section>
-
-        {/* ATRIBUTOS PERSONALES */}
-        <section className="mb-5">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 border-b border-black/80 pb-1 mb-3">
-            Atributos Personales
-          </h2>
-          <p className="text-sm text-gray-700">{personalTraits.join(" · ")}</p>
         </section>
 
         {/* REFERENCIAS */}

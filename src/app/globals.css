@@ -135,25 +135,6 @@ body {
 .reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ═══════════════════════════════════════════
-   SKILL BAR ANIMATION
-   ═══════════════════════════════════════════ */
-
-.skill-bar {
-  height: 4px;
-  border-radius: 2px;
-  background: #27272a;
-  overflow: hidden;
-}
-
-.skill-bar-fill {
-  height: 100%;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
-  width: 0%;
-  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ═══════════════════════════════════════════
    TIMELINE
    ═══════════════════════════════════════════ */
 

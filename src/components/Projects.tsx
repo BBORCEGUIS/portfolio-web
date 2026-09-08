@@ -31,10 +31,7 @@ export default function Projects() {
       <div className="max-w-5xl mx-auto px-6">
         <div className="mb-16 reveal">
           <p className="text-sm font-mono text-pink-400 mb-2">{"// Proyectos"}</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">Lo que he construido</h2>
-          <p className="mt-3 text-zinc-500 max-w-lg">
-            Proyectos reales que demuestran mis capacidades técnicas y mi enfoque para resolver problemas de negocio.
-          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">Proyectos</h2>
         </div>
 
         {/* Project Card */}

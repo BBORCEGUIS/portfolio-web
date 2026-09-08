@@ -30,7 +30,6 @@ export default function Education() {
         <div className="mb-16 reveal">
           <p className="text-sm font-mono text-pink-400 mb-2">{"// Educación"}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">Formación Profesional</h2>
-          <p className="mt-3 text-zinc-500 max-w-lg">Mi preparación formal y certificaciones que respaldan mi experiencia.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6">

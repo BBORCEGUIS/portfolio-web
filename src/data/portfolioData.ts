@@ -79,7 +79,6 @@ export const portfolioData = {
     databaseAndTools: [
       "SQL Server",
       "Visual Studio Code",
-      "OpenCode (AI Dev Tool)",
       "Git / GitHub",
     ],
     supportAndAdmin: [
@@ -90,13 +89,6 @@ export const portfolioData = {
       "Ofimática Avanzada",
     ],
   },
-  personalTraits: [
-    "Proactivo",
-    "Eficiente",
-    "Responsable",
-    "Comprometido",
-    "Orientado a resultados",
-  ],
   projects: [
     {
       name: "AppRRHH_Asistencia",
@@ -116,7 +108,7 @@ export const portfolioData = {
         "Accesibilidad WCAG: navegación por teclado, atributos ARIA, skip links",
       ],
       techStack: {
-        backend: ["C#", ".NET Framework 4.7.2", "ASP.NET Web API", "Dapper", "OWIN"],
+        backend: ["C#", ".NET Framework 4.7.2", "ASP.NET Web API", "Dapper"],
         frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Chart.js", "Glassmorphism"],
         database: ["SQL Server", "Stored Procedures", "ADO.NET"],
         tools: ["EPPlus (Excel)", "QuestPDF (PDF)", "Newtonsoft.Json", "Visual Studio 2022"],

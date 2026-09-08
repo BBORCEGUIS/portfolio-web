@@ -117,9 +117,7 @@ export default function Hero() {
         <div className="flex flex-wrap justify-center gap-8 sm:gap-16 mb-12 reveal reveal-delay-3">
           {[
             { value: "2+", label: "Años de\nexperiencia" },
-            { value: "6+", label: "Tecnologías\nprincipales" },
             { value: "1", label: "Proyecto\ncompletado" },
-            { value: "TSU", label: "Técnico Superior\nen Informática" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-gradient-warm">{stat.value}</div>

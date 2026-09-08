@@ -29,8 +29,7 @@ export default function References() {
       <div className="max-w-5xl mx-auto px-6">
         <div className="mb-16 reveal">
           <p className="text-sm font-mono text-cyan-400 mb-2">{"// Referencias"}</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">Referencias Profesionales</h2>
-          <p className="mt-3 text-zinc-500 max-w-lg">Personas que pueden dar fe de mi trabajo y compromiso.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">Referencias</h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
