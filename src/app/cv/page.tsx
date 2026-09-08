@@ -3,12 +3,180 @@
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
 
+function generatePDF(personalInfo: typeof portfolioData.personalInfo, experience: typeof portfolioData.experience, education: typeof portfolioData.education, skills: typeof portfolioData.skills, references: typeof portfolioData.references) {
+  const { jsPDF } = require("jspdf");
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  const w = doc.internal.pageSize.getWidth();
+  const margin = 20;
+  const contentW = w - margin * 2;
+  let y = margin;
+
+  const checkPage = (needed: number) => {
+    if (y + needed > doc.internal.pageSize.getHeight() - margin) {
+      doc.addPage();
+      y = margin;
+    }
+  };
+
+  const sectionTitle = (title: string) => {
+    checkPage(14);
+    y += 4;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(30, 30, 30);
+    doc.text(title.toUpperCase(), margin, y);
+    y += 1;
+    doc.setDrawColor(30, 30, 30);
+    doc.setLineWidth(0.3);
+    doc.line(margin, y, w - margin, y);
+    y += 5;
+  };
+
+  const writeLine = (text: string, options?: { bold?: boolean; size?: number; color?: number[] }) => {
+    const bold = options?.bold || false;
+    const size = options?.size || 10;
+    const color = options?.color || [60, 60, 60];
+    doc.setFont("helvetica", bold ? "bold" : "normal");
+    doc.setFontSize(size);
+    doc.setTextColor(...color);
+    const lines = doc.splitTextToSize(text, contentW);
+    for (const line of lines) {
+      checkPage(5);
+      doc.text(line, margin, y);
+      y += size * 0.45;
+    }
+  };
+
+  const writeBullet = (text: string) => {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    const lines = doc.splitTextToSize(text, contentW - 6);
+    checkPage(lines.length * 3.5 + 1);
+    doc.text("\u2022", margin + 1, y);
+    for (const line of lines) {
+      doc.text(line, margin + 5, y);
+      y += 3.5;
+    }
+  };
+
+  // Header
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(20, 20, 20);
+  doc.text(personalInfo.fullName, w / 2, y, { align: "center" });
+  y += 7;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  doc.setTextColor(80, 80, 80);
+  doc.text(personalInfo.title, w / 2, y, { align: "center" });
+  y += 7;
+
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  const contactLine = `${personalInfo.location}  |  ${personalInfo.phones[0]}  |  ${personalInfo.email}  |  ${personalInfo.identityCard}`;
+  doc.text(contactLine, w / 2, y, { align: "center" });
+  y += 3;
+
+  doc.setDrawColor(20, 20, 20);
+  doc.setLineWidth(0.6);
+  doc.line(margin, y, w - margin, y);
+  y += 7;
+
+  // Perfil Profesional
+  sectionTitle("Perfil Profesional");
+  writeLine(personalInfo.profileSummary);
+  y += 4;
+
+  // Experiencia Profesional
+  sectionTitle("Experiencia Profesional");
+  for (const job of experience) {
+    checkPage(20);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(20, 20, 20);
+    doc.text(job.role, margin, y);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    doc.text(` \u2014 ${job.company}`, margin + doc.getTextWidth(job.role), y);
+    doc.setFontSize(8);
+    doc.setTextColor(120, 120, 120);
+    doc.text(job.period, w - margin, y, { align: "right" });
+    y += 5;
+
+    for (const r of job.responsibilities) {
+      writeBullet(r);
+    }
+    y += 2;
+  }
+
+  // Formación Académica
+  sectionTitle("Formación Académica");
+  for (const edu of education) {
+    checkPage(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(20, 20, 20);
+    doc.text(edu.degree, margin, y);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    doc.text(` \u2014 ${edu.institution}`, margin + doc.getTextWidth(edu.degree), y);
+    doc.setFontSize(8);
+    doc.setTextColor(120, 120, 120);
+    doc.text(edu.status, w - margin, y, { align: "right" });
+    y += 4;
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text(edu.details, margin, y);
+    y += 6;
+  }
+
+  // Habilidades Técnicas
+  sectionTitle("Habilidades Técnicas");
+  const skillCategories = [
+    { label: "Desarrollo Web", items: skills.development },
+    { label: "Bases de Datos & Herramientas", items: skills.databaseAndTools },
+    { label: "Soporte & Administración", items: skills.supportAndAdmin },
+  ];
+  for (const cat of skillCategories) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(20, 20, 20);
+    doc.text(cat.label + ":", margin, y);
+    y += 4;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    doc.text(cat.items.join(", "), margin, y);
+    y += 5;
+  }
+
+  // Referencias
+  sectionTitle("Referencias");
+  const refColW = contentW / 3;
+  for (let i = 0; i < references.length; i++) {
+    const ref = references[i];
+    const x = margin + i * refColW;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(20, 20, 20);
+    doc.text(ref.name, x, y);
+    y += 4;
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    doc.text(ref.role, x, y);
+    y += 4;
+    doc.setTextColor(100, 100, 100);
+    doc.text(ref.phone, x, y);
+    y -= 8;
+  }
+
+  doc.save("Bruberky_Borceguis_CV.pdf");
+}
+
 export default function CVPage() {
   const { personalInfo, experience, education, skills, references } = portfolioData;
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -34,7 +202,7 @@ export default function CVPage() {
             Imprimir
           </button>
           <button
-            onClick={handlePrint}
+            onClick={() => generatePDF(personalInfo, experience, education, skills, references)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-500 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
