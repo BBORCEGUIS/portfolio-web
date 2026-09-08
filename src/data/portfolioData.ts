@@ -131,17 +131,17 @@ export const portfolioData = {
   references: [
     {
       name: "Deivis Martínez",
-      role: "Coordinador de Tecnología",
+      role: "Analista de Riesgos y Reclamos",
       phone: "(0424) 285-77-39",
     },
     {
       name: "Enderson Montaña",
-      role: "Analista de Riesgos y Reclamos",
+      role: "Coordinador de Tecnología",
       phone: "(0416) 920-89-19",
     },
     {
       name: "Zulay Sánchez",
-      role: "Referencia Laboral — Consolidez",
+      role: "RRHH",
       phone: "(0414) 337-61-52",
     },
   ],
