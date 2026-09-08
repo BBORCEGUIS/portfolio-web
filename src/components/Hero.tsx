@@ -118,7 +118,7 @@ export default function Hero() {
           {[
             { value: "2+", label: "Años de\nexperiencia" },
             { value: "6+", label: "Tecnologías\nprincipales" },
-            { value: "10+", label: "Proyectos\ncompletados" },
+            { value: "1", label: "Proyecto\ncompletado" },
             { value: "TSU", label: "Técnico Superior\nen Informática" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
