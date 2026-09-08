@@ -1,41 +1,13 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  interface Window {
-    html2pdf: any;
-  }
-}
-
 export default function CVPage() {
   const { personalInfo, experience, education, skills, references } = portfolioData;
-  const cvRef = useRef<HTMLDivElement>(null);
-  const scriptLoaded = useRef(false);
 
-  useEffect(() => {
-    if (scriptLoaded.current) return;
-    const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js";
-    script.onload = () => { scriptLoaded.current = true; };
-    document.head.appendChild(script);
-  }, []);
-
-  const handleDownload = () => {
-    if (!window.html2pdf || !cvRef.current) return;
-    window.html2pdf()
-      .set({
-        margin: 10,
-        filename: "Bruberky_Borceguis_CV.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      })
-      .from(cvRef.current)
-      .save();
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
@@ -62,7 +34,7 @@ export default function CVPage() {
             Imprimir
           </button>
           <button
-            onClick={handleDownload}
+            onClick={handlePrint}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-500 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -74,7 +46,7 @@ export default function CVPage() {
       </div>
 
       {/* CV Document */}
-      <div ref={cvRef} className="cv-document max-w-4xl mx-auto my-8 p-8 sm:p-12 bg-white text-black shadow-xl rounded-md print:shadow-none print:my-0 print:rounded-none print:p-8">
+      <div className="cv-document max-w-4xl mx-auto my-8 p-8 sm:p-12 bg-white text-black shadow-xl rounded-md print:shadow-none print:my-0 print:rounded-none print:p-8">
         {/* Header */}
         <header className="text-center mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-gray-900 uppercase">
