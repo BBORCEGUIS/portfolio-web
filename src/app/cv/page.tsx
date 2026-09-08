@@ -1,10 +1,28 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
 
 export default function CVPage() {
   const { personalInfo, experience, education, skills, references } = portfolioData;
+  const cvRef = useRef<HTMLDivElement>(null);
+
+  const handleDownload = async () => {
+    const html2pdf = (await import("html2pdf.js")).default;
+    const element = cvRef.current;
+    if (!element) return;
+    html2pdf()
+      .set({
+        margin: 10,
+        filename: "Bruberky_Borceguis_CV.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      })
+      .from(element)
+      .save();
+  };
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -30,7 +48,7 @@ export default function CVPage() {
             Imprimir
           </button>
           <button
-            onClick={() => window.print()}
+            onClick={handleDownload}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-500 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -42,7 +60,7 @@ export default function CVPage() {
       </div>
 
       {/* CV Document */}
-      <div className="cv-document max-w-4xl mx-auto my-8 p-8 sm:p-12 bg-white text-black shadow-xl rounded-md print:shadow-none print:my-0 print:rounded-none print:p-8">
+      <div ref={cvRef} className="cv-document max-w-4xl mx-auto my-8 p-8 sm:p-12 bg-white text-black shadow-xl rounded-md print:shadow-none print:my-0 print:rounded-none print:p-8">
         {/* Header */}
         <header className="text-center mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-gray-900 uppercase">
